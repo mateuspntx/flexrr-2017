@@ -12,7 +12,7 @@ Flexrr.RenderHeaderComponent = function(showId, element){
       <img src="https://image.tmdb.org/t/p/w300${showData.poster_path}" alt="">
     </div>
     <div class="info">
-      <h1 class="title">${showData.name} <span class="release">(2014)</span></h1>
+      <h1 class="title">${showData.name} <span class="release">(${moment(showData.first_air_date).format('YYYY')})</span></h1>
       <h3>Overview</h3>
       <p class="overview">${showData.overview}</p>
       <h4>Creator</h4>
