@@ -13,6 +13,7 @@ Flexrr.RenderHeaderComponent = function(showId, element){
     tmdb.call(`/tv/${showId}`, {},
     function(showData){
 
+    Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w1000${showData.backdrop_path}`)
     const first_air_date = moment(showData.first_air_date).format('YYYY')
 
     element.innerHTML = `
@@ -73,6 +74,26 @@ Flexrr.SeasonsListComponent = function(data){
 	   </div>
      `).join('')
 
+}
+
+Flexrr.SetBackgroundImage = function(image_uri){
+  var sheet = document.createElement('style');
+  sheet.innerHTML = `
+  body:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%; 
+    height: 100%;  
+    opacity: .4; 
+    z-index: -1;
+    filter: blur(20px);
+    background: url(${image_uri});
+    background-position: center;
+    background-size: cover;
+  }`
+  document.head.appendChild(sheet);
 }
 
 Flexrr.Init = function() {

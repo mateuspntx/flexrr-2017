@@ -8,20 +8,7 @@ body {
   justify-content: center;
   min-height: 100vh;
 }
-body:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%; 
-  height: 100%;  
-  opacity: .4; 
-  z-index: -1;
-  filter: blur(20px);
-  background: url(https://image.tmdb.org/t/p/w533_and_h300_bestv2/qYTIuJJ7fIehicAt3bl0vW70Sq6.jpg);
-  background-position: center;
-  background-size: cover;
-}
+
 .app {
   z-index: 1;
 }
