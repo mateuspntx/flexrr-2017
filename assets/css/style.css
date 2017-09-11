@@ -9,16 +9,34 @@ body {
   min-height: 100vh;
 }
 
+#flexrr-scrollbar::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+#flexrr-scrollbar::-webkit-scrollbar{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+#flexrr-scrollbar::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
+
 .app {
   z-index: 1;
   margin: 10px;
 }
+
 .app .back-btn {
   width: 30px;
 }
+
 .app .back-btn:hover {
   cursor: pointer;
 }
+
 .app .header {
   animation: HeaderIntro 1s ease-out;
   box-sizing: border-box;
@@ -39,13 +57,16 @@ body {
   align-items: center;
   justify-content: space-around;
 }
+
 .app .header .poster img {
   width: 15em;
   filter: drop-shadow(0px 0px 40px black);
 }
+
 .app .header .info .title {
   font-size: 40px;
 }
+
 .app .header .info .title .release {
   font-size: 20px;
   color: lightgray;
@@ -53,21 +74,26 @@ body {
   position: relative;
   top: -8px;
 }
+
 .app .header .info {
   max-width: 400px;
   filter: drop-shadow(0px 0px 5px black);
 }
+
 .app .header .info .overview {
   color: lightgray;
 }
+
 .app .header .info .-margin-top {
   margin-top: -15px;
   color: lightgray;
 }
+
 .app .seasons {
   margin-top: 2em;
   animation: FadeIn 1s ease-in-out;
 }
+
 .app .seasons .season-box {
   display: flex;
   background: rgba(0,0,0,.5);
@@ -75,9 +101,11 @@ body {
   margin-bottom: 10px;
   width: 200px;
 }
+
 .app .seasons .season-box:hover {
   cursor: pointer;
 }
+
 .app .seasons .season-box .cover {
   width: 5em;
   height: 5em;
@@ -86,12 +114,15 @@ body {
   background-position: center;
   background-size: cover;
 }
+
 .app .season .season-box .info {
   line-height: 11px;
 }
+
 .app .season-eps {
   animation: FadeIn ease-in-out 1s;
 }
+
 .app .season-eps .show-info {
   display: flex;
   align-items: center;
@@ -99,10 +130,12 @@ body {
   justify-content: space-between;
   filter: drop-shadow(0px 0px 5px black);
 }
+
 .app .season-eps .ep-container {
   display: flex;
   justify-content: center;
 }
+
 .app .season-eps .episode-box {
   padding: 20px;
   padding-bottom: 5px;
@@ -112,9 +145,11 @@ body {
   margin-bottom: 10px;
   max-width: 300px;
 }
+
 .app .season-eps .episode-box:hover {
   cursor: pointer;
 }
+
 .app .season-eps .episode-box .cover {
   width: 300px;
   height: 100px;
@@ -124,12 +159,14 @@ body {
   background-position: center;
   background-size: cover;
 }
+
 .app .season-eps .show-name {
   position: relative;
   top: -4px;
   font-weight: 300;
   font-size: 20px;
 }
+
 .app .season-eps .episode-box .info .ep-number {
   position: relative;
   top: -2.5px;
@@ -144,11 +181,13 @@ body {
     opacity: 0;
   }
 }
+
 @keyframes FadeIn {
   from {
     opacity: 0;
   }
 }
+
 @keyframes FadeOut {
   to {
     opacity: 0;
