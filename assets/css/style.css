@@ -25,10 +25,16 @@ body {
 .app {
   z-index: 1;
   margin: 10px;
+  display: grid;
+  min-height: 90vh;
 }
 
 .app .back-btn {
   width: 30px;
+}
+
+.app .loading-bars {
+  width: 50px;
 }
 
 .app .back-btn:hover {

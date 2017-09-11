@@ -122,9 +122,17 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element){
       }, 
       function(e){
         console.error(e)
+        element.innerHTML = `
+        <header class="header">
+          <h1>Something went wrong. Try refresh the page.</h1>
+        </header>`
       })
   }catch(e){
     console.error(e)
+    element.innerHTML = `
+      <header class="header">
+        <h1>Something went wrong. Try refresh the page.</h1>
+      </header>`
   }
 
 }
