@@ -3,7 +3,7 @@ window.$ = function(e){
 }
 
 const Flexrr = {
-  showId: '48866'
+  showId: ''
 }
 
 Flexrr.SmoothScroll = function(){
@@ -160,6 +160,13 @@ Flexrr.SetBackgroundImage = function(image_uri){
 }
 
 Flexrr.Init = function() {
+
+  if(Flexrr.showId == ''){
+    const app = $('.app')
+    app.innerHTML = `
+    <header class="header"><h1>Ops... This TV Show does not exist.</h1></header>`
+    return false
+  }
 
   Flexrr.RenderHeaderComponent(Flexrr.showId, '.app')
 
