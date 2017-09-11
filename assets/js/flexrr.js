@@ -2,7 +2,9 @@ window.$ = function(e){
   return document.querySelector(e)
 }
 
-const Flexrr = {}
+const Flexrr = {
+  showId: '48866'
+}
 
 Flexrr.RenderHeaderComponent = function(showId, element){
   
@@ -65,16 +67,58 @@ Flexrr.GenresMap = function(genres){
 Flexrr.SeasonsListComponent = function(data){
 
   return data.seasons.map(season =>
-    `<div class="col-xs-12 season-box">
+    `<div class="col-xs-12 season-box" onclick="Flexrr.RenderSeasonEpsComponent(Flexrr.showId, '${data.name}', ${season.season_number}, '.app')">
 	    <div class="cover" style="background-image:url(${tmdb.images_uri}/w300${season.poster_path})"></div>
 	    <div class="info">
 	      <h2>Season ${season.season_number}</h2>
 	      <p>${moment(season.air_date).format('YYYY')} | ${season.episode_count} episodes</p>
 	    </div>
-	   </div>
-     `).join('')
+	   </div>`).join('')
 
 }
+
+Flexrr.SeasonEpsComponent = function(data){
+
+  return data.episodes.map(episode =>
+      `<div class="col-xs episode-box">
+          <div class="cover" style="background-image:url(${tmdb.images_uri}/w227_and_h127_bestv2${episode.still_path})"></div>
+          <div class="info">
+            <h2><span class="ep-number">${episode.episode_number}</span> ${episode.name}</h2>
+            <p>${episode.overview}</p>
+          </div>
+        </div>`).join('')
+
+}
+
+Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element){
+
+  element = $(element)
+
+  try {
+    tmdb.call(`/tv/${showId}/season/${season}`, {}, 
+      function(showData){
+
+        Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w1000${showData.poster_path}`)
+
+        element.innerHTML = `
+        <section class="season-eps">
+          <div class="show-info">
+            <img src="https://flexrr.ml/assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(Flexrr.showId, '.app')" alt="Back" title="Back" class="back-btn">
+            <h1>Season ${season} <span class="show-name">${showName}</span> </h1>
+          </div>
+          <div class="row">${Flexrr.SeasonEpsComponent(showData)}</div>
+        </section>`
+
+      }, 
+      function(e){
+        console.error(e)
+      })
+  }catch(e){
+    console.error(e)
+  }
+
+}
+
 
 Flexrr.SetBackgroundImage = function(image_uri){
   var sheet = document.createElement('style');
@@ -92,15 +136,14 @@ Flexrr.SetBackgroundImage = function(image_uri){
     background: url(${image_uri});
     background-position: center;
     background-size: cover;
+    animation: FadeIn ease-in-out 1s;
   }`
   document.head.appendChild(sheet);
 }
 
 Flexrr.Init = function() {
 
-  const showId = '48866'
-
-  Flexrr.RenderHeaderComponent(showId, '.app')
+  Flexrr.RenderHeaderComponent(Flexrr.showId, '.app')
 
 }
 
