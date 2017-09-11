@@ -2,9 +2,7 @@ window.$ = function(e){
   return document.querySelector(e)
 }
 
-const Flexrr = {
-  showId: ''
-}
+const Flexrr = {}
 
 Flexrr.SmoothScroll = function(){
     const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -42,7 +40,7 @@ Flexrr.RenderHeaderComponent = function(showId, element){
       </div>
     </header>
     <section class="seasons">
-      <div class="row">${Flexrr.SeasonsListComponent(showData)}</div>
+      <div class="row">${Flexrr.SeasonsListComponent(showId, showData)}</div>
     </section>`
 
     }, 
@@ -72,10 +70,10 @@ Flexrr.GenresMap = function(genres){
   return genres.map(genre => `${genre.name} `).join(', ')
 }
 
-Flexrr.SeasonsListComponent = function(data){
+Flexrr.SeasonsListComponent = function(showId, data){
 
   return data.seasons.map(season =>
-    `<div class="col-xs-12 season-box" onclick="Flexrr.RenderSeasonEpsComponent(Flexrr.showId, '${data.name}', ${season.season_number}, '.app')">
+    `<div class="col-xs-12 season-box" onclick="Flexrr.RenderSeasonEpsComponent(${showId}, '${data.name}', ${season.season_number}, '.app')">
 	    <div class="cover" style="background-image:url(${tmdb.images_uri}/w300${season.poster_path})"></div>
 	    <div class="info">
 	      <h2>Season ${season.season_number}</h2>
@@ -113,7 +111,7 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element){
         element.innerHTML = `
         <section class="season-eps">
           <div class="show-info">
-            <img src="https://flexrr.ml/assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(Flexrr.showId, '.app')" alt="Back" title="Back" class="back-btn">
+            <img src="https://flexrr.ml/assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(${showId}, '.app')" alt="Back" title="Back" class="back-btn">
             <h1>Season ${season} <span class="show-name">${showName}</span> </h1>
           </div>
           <div class="row ep-container">${Flexrr.SeasonEpsComponent(showData)}</div>
@@ -159,17 +157,19 @@ Flexrr.SetBackgroundImage = function(image_uri){
   document.head.appendChild(sheet);
 }
 
-Flexrr.Init = function() {
+Flexrr.Init = function(settings) {
 
-  if(Flexrr.showId == ''){
+  settings: {
+    showId: settings.showId
+  }
+
+  if(settings.showId == ''){
     const app = $('.app')
     app.innerHTML = `
     <header class="header"><h1>Ops... This TV Show does not exist.</h1></header>`
     return false
   }
 
-  Flexrr.RenderHeaderComponent(Flexrr.showId, '.app')
+  Flexrr.RenderHeaderComponent(settings.showId, '.app')
 
 }
-
-Flexrr.Init()
