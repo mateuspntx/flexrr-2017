@@ -101,7 +101,6 @@ body {
 }
 .app .season-eps .ep-container {
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 .app .season-eps .episode-box {
@@ -147,6 +146,11 @@ body {
 }
 @keyframes FadeIn {
   from {
+    opacity: 0;
+  }
+}
+@keyframes FadeOut {
+  to {
     opacity: 0;
   }
 }

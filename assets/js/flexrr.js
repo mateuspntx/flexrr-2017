@@ -116,7 +116,7 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element){
             <img src="https://flexrr.ml/assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(Flexrr.showId, '.app')" alt="Back" title="Back" class="back-btn">
             <h1>Season ${season} <span class="show-name">${showName}</span> </h1>
           </div>
-          <div class="row">${Flexrr.SeasonEpsComponent(showData)}</div>
+          <div class="row ep-container">${Flexrr.SeasonEpsComponent(showData)}</div>
         </section>`
 
       }, 
