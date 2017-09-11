@@ -3,8 +3,6 @@ body {
   background: black;
   color: white;
   display: flex;
-  margin-top: 100px;
-  margin-bottom: 100px;
   justify-content: center;
   min-height: 100vh;
 }
@@ -108,7 +106,6 @@ body {
 
 .app .seasons .season-box .cover {
   width: 5em;
-  height: 5em;
   margin-left: -10px;
   margin-right: 2em;
   background-position: center;
