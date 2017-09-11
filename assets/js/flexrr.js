@@ -6,6 +6,14 @@ const Flexrr = {
   showId: '48866'
 }
 
+Flexrr.SmoothScroll = function(){
+    const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    if (currentScroll > 0) {
+         window.requestAnimationFrame(Flexrr.SmoothScroll);
+         window.scrollTo (0,currentScroll - (currentScroll/5));
+    }
+}
+
 Flexrr.RenderHeaderComponent = function(showId, element){
   
   element = $(element)
@@ -97,6 +105,8 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element){
   try {
     tmdb.call(`/tv/${showId}/season/${season}`, {}, 
       function(showData){
+
+        Flexrr.SmoothScroll()
 
         Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w1000${showData.poster_path}`)
 
