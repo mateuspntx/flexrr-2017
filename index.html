@@ -18,8 +18,9 @@
   </div>
   <script>
     (function(){
+      const showIdHash = document.location.hash.split('#')
       Flexrr.Init({
-        showId: '1402'
+        showId: showIdHash['1']
       })
     })();
   </script>
