@@ -157,6 +157,7 @@ Flexrr.SetBackgroundImage = function(image_uri){
   document.head.appendChild(sheet);
 }
 
+
 Flexrr.Init = function(settings) {
 
   settings: {

@@ -96,7 +96,7 @@ body {
 .app .seasons {
   margin-top: 2em;
   animation: FadeIn 1s ease-in-out;
-  max-width: 900px;
+  max-width: 900px
 }
 
 .app .seasons .season-box {

@@ -1,0 +1,3 @@
+
+RewriteEngine On
+RewriteRule ^show/(.*)$ show.html#$1 [NC]       
