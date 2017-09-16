@@ -7,10 +7,10 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">  
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/moment.min.js"></script> 
-  <script src="assets/js/tmdb.js"></script> 
-  <script src="assets/js/flexrr.js"></script>
+  <link rel="stylesheet" href="http://localhost/assets/css/style.css">
+  <script async src="http://localhost/assets/js/moment.min.js"></script> 
+  <script  src="http://localhost/assets/js/tmdb.js"></script> 
+  <script  src="http://localhost/assets/js/flexrr.js"></script>
 </head>
 <body>
   <div class="app">
@@ -18,9 +18,9 @@
   </div>
   <script>
     (function(){
-      const showIdHash = document.location.hash.split('#')
+      const showIdHash = document.location.pathname.split('/')
       Flexrr.Init({
-        showId: showIdHash['1']
+        showId: showIdHash['2']
       })
     })();
   </script>
