@@ -96,11 +96,55 @@ Flexrr.SeasonEpsComponent = function(data){
 
 }
 
-Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element){
+Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element, singlePage){
 
   element = $(element)
 
   try {
+
+    if(singlePage == 'sp'){
+
+    tmdb.call(`/tv/${showId}`, {}, 
+      function(showInfo){
+
+        const showName = showInfo.name
+
+        tmdb.call(`/tv/${showId}/season/${season}`, {}, 
+        function(showData){
+
+          Flexrr.SmoothScroll()
+
+          Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w1000${showData.poster_path}`)
+
+          element.innerHTML = `
+          <section class="season-eps">
+            <div class="show-info">
+              <img src="https://flexrr.ml/assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(${showId}, '.app')" alt="Back" title="Back" class="back-btn">
+              <h1>Season ${season} <span class="show-name">${showName}</span> </h1>
+            </div>
+            <div class="row ep-container">${Flexrr.SeasonEpsComponent(showData)}</div>
+          </section>`
+
+        }, 
+        function(e){
+          console.error(e)
+          element.innerHTML = `
+          <header class="header">
+            <h1>Something went wrong. Try refresh the page.</h1>
+          </header>`
+        })
+
+      }, 
+      function(e){
+          console.error(e)
+          element.innerHTML = `
+          <header class="header">
+            <h1>Something went wrong. Try refresh the page.</h1>
+          </header>`
+      })
+
+    }else{
+
     tmdb.call(`/tv/${showId}/season/${season}`, {}, 
       function(showData){
 
@@ -125,6 +169,7 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element){
           <h1>Something went wrong. Try refresh the page.</h1>
         </header>`
       })
+    }
   }catch(e){
     console.error(e)
     element.innerHTML = `
@@ -158,19 +203,23 @@ Flexrr.SetBackgroundImage = function(image_uri){
 }
 
 
-Flexrr.Init = function(settings) {
+Flexrr.Init = function(showId, showSeason) {
 
-  settings: {
-    showId: settings.showId
-  }
-
-  if(settings.showId == ''){
+  if(showId == ''){
     const app = $('.app')
     app.innerHTML = `
     <header class="header"><h1>Ops... This TV Show does not exist.</h1></header>`
     return false
   }
 
-  Flexrr.RenderHeaderComponent(settings.showId, '.app')
+  const location = document.location.pathname
+
+    if(location.includes('episode')){
+        document.write('play episode here')
+    }else if(location.includes('season')){
+        Flexrr.RenderSeasonEpsComponent(showId, 0, showSeason, '.app', 'sp')
+    }else{
+        Flexrr.RenderHeaderComponent(showId, '.app')
+    }
 
 }
