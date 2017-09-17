@@ -197,3 +197,10 @@ body {
     opacity: 0;
   }
 }
+
+
+@media screen and (max-width: 480px) {
+    .app .header {
+      animation: FadeIn 1s ease-in-out;
+    }
+}
