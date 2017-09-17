@@ -92,7 +92,7 @@ Flexrr.SeasonEpsComponent = function(data){
 
   return data.episodes.map(episode =>
       `<div class="col-xs episode-box">
-          <div class="cover" style="background-image:url(${tmdb.images_uri}/w227_and_h127_bestv2${episode.still_path})"></div>
+          <div class="cover" style="background-image:url(${tmdb.images_uri}/w300${episode.still_path})"></div>
           <div class="info">
             <h2><span class="ep-number">${episode.episode_number}</span> ${episode.name}</h2>
             <p>${episode.overview}</p>
