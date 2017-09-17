@@ -21,6 +21,11 @@ Flexrr.RenderHeaderComponent = function(showId, element){
     tmdb.call(`/tv/${showId}`, {},
     function(showData){
 
+    const urlHistory = `/show/${showId}`
+    const titleHistory = `Flexrr - ${showData.name}`
+    document.title = titleHistory
+    window.history.pushState('flexrr-showInfo', titleHistory, urlHistory)
+
     Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w1000${showData.backdrop_path}`)
     const first_air_date = moment(showData.first_air_date).format('YYYY')
 
@@ -109,6 +114,11 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element, si
 
         const showName = showInfo.name
 
+        const urlHistory = `/show/${showId}/season/${season}`
+        const titleHistory = `Flexrr - Season ${season} ${showInfo.name}`
+        document.title = titleHistory
+        window.history.pushState('flexrr-showSeasonSP', titleHistory, urlHistory)
+
         tmdb.call(`/tv/${showId}/season/${season}`, {}, 
         function(showData){
 
@@ -149,6 +159,11 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element, si
       function(showData){
 
         Flexrr.SmoothScroll()
+
+        const urlHistory = `/show/${showId}/season/${season}`
+        const titleHistory = `Flexrr - Season ${season} ${showName}`
+        document.title = titleHistory
+        window.history.pushState('flexrr-showSeason', titleHistory, urlHistory)
 
         Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w1000${showData.poster_path}`)
 
@@ -206,9 +221,7 @@ Flexrr.SetBackgroundImage = function(image_uri){
 Flexrr.Init = function(showId, showSeason) {
 
   if(showId == ''){
-    const app = $('.app')
-    app.innerHTML = `
-    <header class="header"><h1>Ops... This TV Show does not exist.</h1></header>`
+    document.location.href = 'http://localhost'
     return false
   }
 
