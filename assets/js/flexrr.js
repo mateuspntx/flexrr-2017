@@ -195,7 +195,6 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element, si
 
 }
 
-
 Flexrr.RenderHomeComponent = function(element){
 
   element = $(element)
@@ -215,9 +214,37 @@ Flexrr.RenderHomeComponent = function(element){
   </section>
   </div>
   </div>`
-
+  Flexrr.RenderSearchComponent('.search-input', '.row')
 }
 
+Flexrr.SearchComponent = function(data){
+  return data.results.map(result =>
+      `<div class="col-xs result-box" onclick="Flexrr.RenderHeaderComponent(${result.id}, '.app')">
+        <div class="cover" style="background-image:url(${tmdb.images_uri}/w300${result.poster_path})" ></div>
+        <div class="info">
+          <h2>${result.original_name}</h2>
+          <p id="overview">${result.overview}</p>
+        </div>
+      </div>`).join('')
+}
+
+Flexrr.RenderSearchComponent = function(searchInput, element){
+
+  searchInput = $(searchInput)
+  element = $(element)
+
+  searchInput.addEventListener('keyup', 
+    function(e){
+      tmdb.call('/search/tv', {'query': `${searchInput.value}`}, 
+        function(searchData){
+          element.innerHTML = Flexrr.SearchComponent(searchData)
+        },
+        function(err){
+          console.error(err)
+        })
+    })
+
+}
 
 Flexrr.SetBackgroundImage = function(image_uri){
   var sheet = document.createElement('style');
@@ -239,7 +266,6 @@ Flexrr.SetBackgroundImage = function(image_uri){
   }`
   document.head.appendChild(sheet);
 }
-
 
 Flexrr.Init = function(showId, showSeason) {
 
