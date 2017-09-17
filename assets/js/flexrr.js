@@ -237,6 +237,7 @@ Flexrr.RenderSearchComponent = function(searchInput, element){
     function(e){
       tmdb.call('/search/tv', {'query': `${searchInput.value}`}, 
         function(searchData){
+          Flexrr.SetBackgroundImage(`${tmdb.images_uri}/original${searchData.results['0'].backdrop_path}`)
           element.innerHTML = Flexrr.SearchComponent(searchData)
         },
         function(err){
