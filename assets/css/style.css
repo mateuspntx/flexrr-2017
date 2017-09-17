@@ -11,6 +11,7 @@ body {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   background-color: #F5F5F5;
 }
+
 #flexrr-scrollbar::-webkit-scrollbar{
   width: 10px;
   background-color: #F5F5F5;
@@ -156,7 +157,7 @@ body {
 
 .app .season-eps .episode-box .cover {
   width: 300px;
-  height: 150px;
+  height: 100px;
   margin-top: -20px;
   margin-left: -20px;
   margin-right: 2em;
@@ -179,6 +180,76 @@ body {
   font-size: 16px;
 }
 
+.app .home .header {
+  display: grid;
+  text-align: center;
+}
+
+.app .home {
+  display: grid;
+  justify-content: center;
+  max-width: 900px;
+}
+
+.app .home .header h1 {
+  font-size: 5em;
+  text-shadow: 0px 0px 20px black;
+}
+
+.app .home .header .search-input {
+  background: none;
+  color: white;
+  width: 100%;
+  font-size: 2em;
+  border: none;
+  outline: none;
+  padding: 15px;
+  box-shadow: 0px 2px white;
+}
+
+.app .home .search-results {
+  margin-top: 3em;
+  display: flex;
+  justify-content: center;
+}
+
+.app .home .search-results .result-box {
+  display: flex;
+  background: rgba(0,0,0,.5);
+  border-radius: 0px 5px 5px 0px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  width: 400px;
+  height: 170px;
+}
+
+.app .home .search-results .result-box:hover {
+  cursor: pointer;
+}
+
+.app .home .search-results .result-box .cover {
+  width: 720px;
+  margin-left: -10px;
+  margin-right: 2em;
+  background-position: center;
+  background-size: cover;
+}
+
+.app .home .search-results .result-box .info #overview {
+  display: block;
+  display: -webkit-box;
+  height: 73px;
+  margin: 0 auto;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app .home .search-results .result-box .info .dots {
+  color: lightgray;
+}
+
 @keyframes HeaderIntro {
   from {
     margin-left: -2em;
@@ -199,8 +270,20 @@ body {
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
     .app .header {
       animation: FadeIn 1s ease-in-out;
+    }
+    .app .home .header .search-input {
+      width: 300px;
+      font-size: 1.3em;
+    }
+    .app .season-eps .show-info {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .app .season-eps .show-info h1 {
+      margin-bottom: 3px;
     }
 }

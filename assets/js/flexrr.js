@@ -130,7 +130,7 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element, si
           <section class="season-eps">
             <div class="show-info">
               <img src="https://flexrr.ml/assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(${showId}, '.app')" alt="Back" title="Back" class="back-btn">
-              <h1>Season ${season} <span class="show-name">${showName}</span> </h1>
+              <h1>Season ${season} </h1><span class="show-name">${showName}</span>
             </div>
             <div class="row ep-container">${Flexrr.SeasonEpsComponent(showData)}</div>
           </section>`
@@ -171,7 +171,7 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element, si
         <section class="season-eps">
           <div class="show-info">
             <img src="https://flexrr.ml/assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(${showId}, '.app')" alt="Back" title="Back" class="back-btn">
-            <h1>Season ${season} <span class="show-name">${showName}</span> </h1>
+            <h1>Season ${season} </h1><span class="show-name">${showName}</span>
           </div>
           <div class="row ep-container">${Flexrr.SeasonEpsComponent(showData)}</div>
         </section>`
@@ -192,6 +192,29 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element, si
         <h1>Something went wrong. Try refresh the page.</h1>
       </header>`
   }
+
+}
+
+
+Flexrr.RenderHomeComponent = function(element){
+
+  element = $(element)
+
+  let backgroundUrl = 'https://image.tmdb.org/t/p/w1000/vxuoMW6YBt6UsxvMfRNwRl9LtWS.jpg'
+
+  Flexrr.SetBackgroundImage(backgroundUrl)
+
+  element.innerHTML = `
+  <div class="home">
+  <section class="header">
+    <h1>Flexrr</h1>
+    <input type="text" placeholder="Search your favorite TV show" class="search-input">
+  </section>
+  <section class="search-results">
+    <div class="row"></div>
+  </section>
+  </div>
+  </div>`
 
 }
 
@@ -220,19 +243,21 @@ Flexrr.SetBackgroundImage = function(image_uri){
 
 Flexrr.Init = function(showId, showSeason) {
 
-  if(showId == ''){
+  let location = document.location.pathname
+
+  if(location == '/show'){
     document.location.href = 'http://localhost'
     return false
   }
-
-  const location = document.location.pathname
 
     if(location.includes('episode')){
         document.write('play episode here')
     }else if(location.includes('season')){
         Flexrr.RenderSeasonEpsComponent(showId, 0, showSeason, '.app', 'sp')
-    }else{
+    }else if(location.includes('show')){
         Flexrr.RenderHeaderComponent(showId, '.app')
+    }else{
+        Flexrr.RenderHomeComponent('.app')
     }
 
 }
