@@ -228,7 +228,7 @@ body {
 }
 
 .app .home .search-results .result-box .cover {
-  width: 720px;
+  min-width: 110px;
   margin-left: -10px;
   margin-right: 2em;
   background-position: center;
