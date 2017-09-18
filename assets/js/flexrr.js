@@ -30,6 +30,9 @@ Flexrr.RenderHeaderComponent = function(showId, element){
     const first_air_date = moment(showData.first_air_date).format('YYYY')
 
     element.innerHTML = `
+    <div class="top-flexrr-logo">
+      <h1 title="Back to home page" alt="Back to home page" onclick="Flexrr.RenderHomeComponent('.app')">Flexrr</h1>
+    </div>
     <header class="header">
       <div class="poster">
         <img src="${tmdb.images_uri}/w300${showData.poster_path}" alt="">
@@ -198,6 +201,11 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element, si
 Flexrr.RenderHomeComponent = function(element){
 
   element = $(element)
+
+  let urlHistory = `/`
+  let titleHistory = `Flexrr`
+  document.title = titleHistory
+  window.history.replaceState('flexrr-home', titleHistory, urlHistory)
 
   let backgroundUrl = 'https://image.tmdb.org/t/p/w1000/vxuoMW6YBt6UsxvMfRNwRl9LtWS.jpg'
 

@@ -30,6 +30,15 @@ body {
   min-height: 90vh;
 }
 
+.app .top-flexrr-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.app .top-flexrr-logo {
+  cursor: pointer;
+}
+
 .app .back-btn {
   width: 30px;
 }
