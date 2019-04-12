@@ -4,6 +4,8 @@ window.$ = function(e){
 
 const Flexrr = {}
 
+Flexrr.BASE_URI = 'http://localhost:8887'
+
 Flexrr.SmoothScroll = function(){
     const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
     if (currentScroll > 0) {
@@ -24,9 +26,9 @@ Flexrr.RenderHeaderComponent = function(showId, element){
     const urlHistory = `/show/${showId}`
     const titleHistory = `Flexrr - ${showData.name}`
     document.title = titleHistory
-    window.history.replaceState('flexrr-showInfo', titleHistory, urlHistory)
+    window.history.pushState({}, titleHistory, urlHistory)
 
-    Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w1000${showData.backdrop_path}`)
+    Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w500${showData.backdrop_path}`)
     const first_air_date = moment(showData.first_air_date).format('YYYY')
 
     element.innerHTML = `
@@ -120,19 +122,19 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element, si
         const urlHistory = `/show/${showId}/season/${season}`
         const titleHistory = `Flexrr - Season ${season} ${showInfo.name}`
         document.title = titleHistory
-        window.history.replaceState('flexrr-showSeasonSP', titleHistory, urlHistory)
+        window.history.pushState({}, titleHistory, urlHistory)
 
         tmdb.call(`/tv/${showId}/season/${season}`, {}, 
         function(showData){
 
           Flexrr.SmoothScroll()
 
-          Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w1000${showData.poster_path}`)
+          Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w500${showData.poster_path}`)
 
           element.innerHTML = `
           <section class="season-eps">
             <div class="show-info">
-              <img src="https://flexrr.ml/assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(${showId}, '.app')" alt="Back" title="Back" class="back-btn">
+              <img src=".../assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(${showId}, '.app')" alt="Back" title="Back" class="back-btn">
               <h1>Season ${season} </h1><span class="show-name">${showName}</span>
             </div>
             <div class="row ep-container">${Flexrr.SeasonEpsComponent(showData)}</div>
@@ -166,14 +168,14 @@ Flexrr.RenderSeasonEpsComponent = function(showId, showName, season, element, si
         const urlHistory = `/show/${showId}/season/${season}`
         const titleHistory = `Flexrr - Season ${season} ${showName}`
         document.title = titleHistory
-        window.history.replaceState('flexrr-showSeason', titleHistory, urlHistory)
+        window.history.pushState({}, titleHistory, urlHistory)
 
-        Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w1000${showData.poster_path}`)
+        Flexrr.SetBackgroundImage(`${tmdb.images_uri}/w500${showData.poster_path}`)
 
         element.innerHTML = `
         <section class="season-eps">
           <div class="show-info">
-            <img src="https://flexrr.ml/assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(${showId}, '.app')" alt="Back" title="Back" class="back-btn">
+            <img src="./assets/images/left-arrow.svg" onclick="Flexrr.RenderHeaderComponent(${showId}, '.app')" alt="Back" title="Back" class="back-btn">
             <h1>Season ${season} </h1><span class="show-name">${showName}</span>
           </div>
           <div class="row ep-container">${Flexrr.SeasonEpsComponent(showData)}</div>
@@ -205,9 +207,9 @@ Flexrr.RenderHomeComponent = function(element){
   let urlHistory = `/`
   let titleHistory = `Flexrr`
   document.title = titleHistory
-  window.history.replaceState('flexrr-home', titleHistory, urlHistory)
+  window.history.pushState({}, titleHistory, urlHistory)
 
-  let backgroundUrl = 'https://image.tmdb.org/t/p/w1000/vxuoMW6YBt6UsxvMfRNwRl9LtWS.jpg'
+  let backgroundUrl = 'https://image.tmdb.org/t/p/w500/vxuoMW6YBt6UsxvMfRNwRl9LtWS.jpg'
 
   Flexrr.SetBackgroundImage(backgroundUrl)
 
@@ -260,7 +262,7 @@ Flexrr.SetBackgroundImage = function(image_uri){
   sheet.innerHTML = `
   body:before {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     width: 100%; 
@@ -281,7 +283,7 @@ Flexrr.Init = function(showId, showSeason) {
   let location = document.location.pathname
 
   if(location == '/show'){
-    document.location.href = 'http://localhost'
+    document.location.href = Flexrr.BASE_URI
     return false
   }
 
