@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="assets/css/player.css"/>
-    <script src="assets/js/flexrr.player.js"></script>
+    <script async src="assets/js/flexrr.player.js"></script>
   </head>
 <body>
 <div class="app">
@@ -26,8 +26,8 @@
         <h2>The 100</h2>
         <h3>S1:E1: "Pilot"</h3>
       </div>
-      <video id="player">
-        <source src="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" type="video/mp4">
+      <video class="player" id="player">
+        <source id="video_source" src="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" type="video/mp4">
       </video>
       <div class="controls">
         <img src="assets/images/play-icon.svg" width="20em" class="play-pause-btn" onclick="Flexrr.Player.PlayControl(this)">

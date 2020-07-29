@@ -22,21 +22,21 @@ window.oncontextmenu = () => false
 Flexrr = {}
 
 Flexrr.Player = {
-  videoEl: $('#player'),
+  videoEl: document.getElementById('player'),
   controlsEl: $('.controls')
 }
 
 Flexrr.Player.PlayControl = function(btn){
-  const video = document.getElementById('player')
+  const video = Flexrr.Player.videoEl
   const controls = Flexrr.Player.controlsEl
   if(video.paused){
     video.play()
-    btn.src = 'pause-icon.png'
+    btn.src = 'assets/images/pause-icon.svg'
     Flexrr.Player.onHide(controls)
     Flexrr.Player.timeoutShowInfo(false)
   }else{
     video.pause()
-    btn.src = 'play-icon.png'
+    btn.src = 'assets/images/play-icon.svg'
     setTimeout(()=>Flexrr.Player.timeoutShowInfo(true), 5000)
   }
 }
@@ -164,12 +164,12 @@ Flexrr.Player.FullScreenControl = function(btn){
 
 Flexrr.Player.onFullScreen = function(btn){
   console.info('FullScreen enabled')
-  btn.src = 'http://lab.pntx.ml/i/minimize-icon.svg'
+  btn.src = 'assets/images/minimize-icon.svg'
 }
 
 Flexrr.Player.exitFullScreen = function(btn){
   console.info('FullScreen disabled')
-  btn.src = 'http://lab.pntx.ml/i/fullscreen-icon.svg'
+  btn.src = 'assets/images/fullscreen-icon.svg'
 }
 
 Flexrr.Player.SpaceKeyControl = function(){
@@ -206,7 +206,16 @@ Flexrr.Player.DragCurrentTime = function(){
   })
 }
 
-//Flexrr.Player.DragCurrentTime()
-//Flexrr.Player.SpaceKeyControl()
-//Flexrr.Player.ProgressControl()
-//Flexrr.Player.HideControls()
+Flexrr.Player.DragCurrentTime()
+Flexrr.Player.SpaceKeyControl()
+Flexrr.Player.ProgressControl()
+Flexrr.Player.HideControls()
+
+Flexrr.Init = function() {
+  Flexrr.Player.DragCurrentTime()
+  Flexrr.Player.SpaceKeyControl()
+  Flexrr.Player.ProgressControl()
+  Flexrr.Player.HideControls()
+}
+
+Flexrr.Init()
