@@ -6,8 +6,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="style.css"/>
-    <script  src="script.js"></script>
+    <link rel="stylesheet" href="assets/css/player.css"/>
+    <script src="assets/js/flexrr.player.js"></script>
   </head>
 <body>
 <div class="app">
@@ -30,7 +30,7 @@
         <source src="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" type="video/mp4">
       </video>
       <div class="controls">
-        <img src="play-icon.png" width="20em" class="play-pause-btn" onclick="Flexrr.Player.PlayControl(this)">
+        <img src="assets/images/play-icon.svg" width="20em" class="play-pause-btn" onclick="Flexrr.Player.PlayControl(this)">
         <p class="show-info-control">S1:E1: "Pilot"</p>
         <p class="divisor">|</p>
         <p class="current-time">00:00</p>
@@ -39,11 +39,11 @@
           <span class="bar"></span>
         </div>
         <p class="duration-time">00:00</p>
-        <img src="http://lab.pntx.ml/i/speaker-icon.svg" alt="" class="speaker-btn" width="20em">
+        <img src="assets/images/speaker-icon.svg" alt="" class="speaker-btn" width="20em">
         <div class="volume">
           <span class="bar"></span>
         </div>
-        <img src="http://lab.pntx.ml/i/fullscreen-icon.svg" alt="" class="fullscreen-btn" width="20em" onclick="Flexrr.Player.FullScreenControl(this)">
+        <img src="assets/images/fullscreen-icon.svg" alt="" class="fullscreen-btn" width="20em" onclick="Flexrr.Player.FullScreenControl(this)">
       </div>
     </div>
 </div>
