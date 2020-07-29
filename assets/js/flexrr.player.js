@@ -1,3 +1,5 @@
+'use strict';
+
 (function (mouseStopDelay) {
     var timeout;
     document.addEventListener('mousemove', function (e) {
@@ -19,7 +21,7 @@
 window.$ = (e) => document.querySelector(e)
 window.oncontextmenu = () => false
 
-Flexrr = {}
+const Flexrr = {}
 
 Flexrr.Player = {
   videoEl: document.getElementById('player'),
@@ -59,11 +61,11 @@ Flexrr.Player.HideControls = function(){
   body = $('body')
   
   body.addEventListener('mousemove', () => Flexrr.Player.onShow(controls))
-  body.addEventListener('mousestop', function(){
-    if(player.paused){
-      return false
-    }else{
-      Flexrr.Player.onHide(controls)
+  body.addEventListener('mousestop', () => {
+    if(!player.paused){
+        return false
+    }else {
+        Flexrr.Player.onHide(controls)
     }
   })
 }
@@ -72,18 +74,17 @@ Flexrr.Player.ProgressControl = function(){
   const player = Flexrr.Player.videoEl
   player.addEventListener('timeupdate', function(){
     Flexrr.Player.BufferControl()
-    let currentPos = player.currentTime,
-    currentSecond = Math.floor(currentPos),
-		currentMinute = Math.floor(currentSecond / 60),
-		currentSeconds = currentSecond - ( currentMinute * 60 ),
-		currentSecondss = ( String(currentSecond).length > 1 ) ? currentSecond : ( String("0") + currentSecond ),
-    duration = player.duration,
-    minutes = Math.floor(duration / 60),
-    seconds = Math.floor(duration - (minutes * 60)),
-    progressPerc = 100 * currentPos / duration
+    const currentPos = player.currentTime,
+          currentSecond = Math.floor(currentPos),
+          currentMinute = Math.floor(currentSecond / 60),
+          currentSeconds = ( String(currentSecond).length > 1 ) ? currentSecond : ( String("0") + currentSecond ),
+          duration = player.duration,
+          minutes = Math.floor(duration / 60),
+          seconds = Math.floor(duration - (minutes * 60)),
+          progressPerc = 100 * currentPos / duration
     
     $('.bar').style.width = progressPerc+'%'
-    $('.current-time').innerHTML = `${currentMinute}:${currentSecondss}`
+    $('.current-time').innerHTML = `${currentMinute}:${currentSeconds}`
     $('.duration-time').innerHTML = `${minutes}:${seconds}`
   })
 }
@@ -180,12 +181,12 @@ Flexrr.Player.SpaceKeyControl = function(){
     if (e.keyCode == 0 || e.keyCode == 32) {
       if(video.paused){
         video.play()
-        btn.src = 'pause-icon.png'
+        btn.src = 'assets/images/pause-icon.svg'
         Flexrr.Player.onHide(controls)
         Flexrr.Player.timeoutShowInfo(false)
       }else{
         video.pause()
-        btn.src = 'play-icon.png'
+        btn.src = 'assets/images/play-icon.svg'
         Flexrr.Player.onShow(controls)
         setTimeout(()=>Flexrr.Player.timeoutShowInfo(true), 5000) 
       }
@@ -193,29 +194,26 @@ Flexrr.Player.SpaceKeyControl = function(){
   })
 }
 
-Flexrr.Player.DragCurrentTime = function(){
-  const bar = document.getElementById('progress'),
+Flexrr.Player.SeekTo = function(){
+  const progressBar = $('#progress'),
   video = Flexrr.Player.videoEl,
   duration = video.duration,
-  width = bar.offsetWidth
+  progressBarWidth = progressBar.offsetWidth
   
-  bar.addEventListener('click', function(e){
-    const x = Math.floor(e.clientX - bar.offsetLeft)
-    console.log((duration / width) * x)
-    video.currentTime = duration * (x / width)
+  progressBar.addEventListener('click', function(e){
+    const x = Math.floor(e.clientX - progressBarWidth.offsetLeft)
+    console.log((duration / progressBarWidth) * x)
+    video.currentTime = duration * (x / progressBarWidth) 
   })
 }
 
-Flexrr.Player.DragCurrentTime()
-Flexrr.Player.SpaceKeyControl()
-Flexrr.Player.ProgressControl()
-Flexrr.Player.HideControls()
-
 Flexrr.Init = function() {
-  Flexrr.Player.DragCurrentTime()
+
+  Flexrr.Player.SeekTo()
   Flexrr.Player.SpaceKeyControl()
   Flexrr.Player.ProgressControl()
   Flexrr.Player.HideControls()
+
 }
 
 Flexrr.Init()
