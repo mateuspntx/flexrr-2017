@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html id="flexrr-scrollbar">
+  <head>
+    <title>Flexrr Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="style.css"/>
+    <script  src="script.js"></script>
+  </head>
+<body>
+<div class="app">
+  <!--<div class="episode-loader">
+    <div class="info">
+      <h1>The 100</h1>
+      <h2>S1:E1: "Pilot"</h2>
+      <div class="loading">
+      <img src="https://flexrr.ml/assets/images/loading-bars.svg" class="loading-bars">
+    </div>
+    </div>
+  </div>-->
+    <div class="player-container">
+      <div class="show-info">
+        <h1>You're watching</h1>
+        <h2>The 100</h2>
+        <h3>S1:E1: "Pilot"</h3>
+      </div>
+      <video id="player">
+        <source src="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" type="video/mp4">
+      </video>
+      <div class="controls">
+        <img src="play-icon.png" width="20em" class="play-pause-btn" onclick="Flexrr.Player.PlayControl(this)">
+        <p class="show-info-control">S1:E1: "Pilot"</p>
+        <p class="divisor">|</p>
+        <p class="current-time">00:00</p>
+        <div class="progress" id="progress">
+          <span class="buffered"></span>
+          <span class="bar"></span>
+        </div>
+        <p class="duration-time">00:00</p>
+        <img src="http://lab.pntx.ml/i/speaker-icon.svg" alt="" class="speaker-btn" width="20em">
+        <div class="volume">
+          <span class="bar"></span>
+        </div>
+        <img src="http://lab.pntx.ml/i/fullscreen-icon.svg" alt="" class="fullscreen-btn" width="20em" onclick="Flexrr.Player.FullScreenControl(this)">
+      </div>
+    </div>
+</div>
+</body>
+</html>

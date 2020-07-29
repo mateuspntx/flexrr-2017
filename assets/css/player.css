@@ -1,0 +1,418 @@
+body {
+  font-family: 'Lato', sans-serif;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+#flexrr-scrollbar::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+#flexrr-scrollbar::-webkit-scrollbar{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+#flexrr-scrollbar::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
+
+.app {
+  z-index: 1;
+  margin: 10px;
+  display: grid;
+  min-height: 90vh;
+}
+
+.app .top-flexrr-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.app .top-flexrr-logo {
+  cursor: pointer;
+}
+
+.app .back-btn {
+  width: 30px;
+}
+
+.app .loading-bars {
+  width: 50px;
+}
+
+.app .back-btn:hover {
+  cursor: pointer;
+}
+
+.app .header {
+  animation: HeaderIntro 1s ease-out;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.app .header .poster img {
+  width: 15em;
+  filter: drop-shadow(0px 0px 40px black);
+}
+
+.app .header .info .title {
+  font-size: 40px;
+}
+
+.app .header .info .title .release {
+  font-size: 20px;
+  color: lightgray;
+  font-weight: 300;
+  position: relative;
+  top: -8px;
+}
+
+.app .header .info {
+  max-width: 400px;
+  filter: drop-shadow(0px 0px 5px black);
+}
+
+.app .header .info .overview {
+  color: lightgray;
+}
+
+.app .header .info .-margin-top {
+  margin-top: -15px;
+  color: lightgray;
+}
+
+.app .seasons {
+  margin-top: 2em;
+  animation: FadeIn 1s ease-in-out;
+  max-width: 900px;
+}
+
+.app .seasons .season-box {
+  display: flex;
+  background: rgba(0,0,0,.5);
+  border-radius: 0px 5px 5px 0px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+.app .seasons .season-box:hover {
+  cursor: pointer;
+}
+
+.app .seasons .season-box .cover {
+  width: 5em;
+  margin-left: -10px;
+  margin-right: 2em;
+  background-position: center;
+  background-size: cover;
+}
+
+.app .season .season-box .info {
+  line-height: 11px;
+}
+
+.app .season-eps {
+  animation: FadeIn ease-in-out 1s;
+}
+
+.app .season-eps .show-info {
+  display: flex;
+  align-items: center;
+  margin: 0px 50px;
+  justify-content: space-between;
+  filter: drop-shadow(0px 0px 5px black);
+}
+
+.app .season-eps .ep-container {
+  display: flex;
+  justify-content: center;
+}
+
+.app .season-eps .episode-box {
+  padding: 20px;
+  padding-bottom: 5px;
+  margin-right: 15px;
+  background: rgba(0,0,0,.5);
+  border-radius: 0px 0px 5px 5px;
+  margin-bottom: 10px;
+  max-width: 300px;
+}
+
+.app .season-eps .episode-box:hover {
+  cursor: pointer;
+}
+
+.app .season-eps .episode-box .cover {
+  width: 300px;
+  height: 100px;
+  margin-top: -20px;
+  margin-left: -20px;
+  margin-right: 2em;
+  background-position: center;
+  background-size: cover;
+}
+
+.app .season-eps .show-name {
+  position: relative;
+  top: -4px;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.app .season-eps .episode-box .info .ep-number {
+  position: relative;
+  top: -2.5px;
+  margin-right: 5px;
+  color: lightgray;
+  font-size: 16px;
+}
+
+.app .home .header {
+  display: grid;
+  text-align: center;
+}
+
+.app .home {
+  display: grid;
+  justify-content: center;
+  max-width: 900px;
+}
+
+.app .home .header h1 {
+  font-size: 5em;
+  text-shadow: 0px 0px 20px black;
+}
+
+.app .home .header .search-input {
+  background: none;
+  color: white;
+  width: 100%;
+  font-size: 2em;
+  border: none;
+  outline: none;
+  padding: 15px;
+  box-shadow: 0px 2px white;
+}
+
+.app .home .search-results {
+  margin-top: 3em;
+  display: flex;
+  justify-content: center;
+}
+
+.app .home .search-results .result-box {
+  display: flex;
+  background: rgba(0,0,0,.5);
+  border-radius: 0px 5px 5px 0px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  width: 400px;
+  height: 170px;
+}
+
+.app .home .search-results .result-box:hover {
+  cursor: pointer;
+}
+
+.app .home .search-results .result-box .cover {
+  min-width: 110px;
+  margin-left: -10px;
+  margin-right: 2em;
+  background-position: center;
+  background-size: cover;
+}
+
+.app .home .search-results .result-box .info #overview {
+  display: block;
+  display: -webkit-box;
+  height: 73px;
+  margin: 0 auto;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app .home .search-results .result-box .info .dots {
+  color: lightgray;
+}
+
+.app .episode-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(https://image.tmdb.org/t/p/w1280/wgIXRSWz6E1AgaohtH7WcL9eojS.jpg);
+  background-size: cover;
+}
+
+.app .episode-loader .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-shadow: 0px 0px 10px black;
+  margin-top: -21px;
+  padding: 50px 100px;
+  background: transparent;
+  background: -webkit-linear-gradient(black, transparent);
+  background: -o-linear-gradient(black, transparent);
+  background: -moz-linear-gradient(black, transparent);
+  background: linear-gradient(black, transparent);
+}
+
+.app .player-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.app .player-container .show-info {
+  display: none;
+  position: absolute;
+  padding: 5em 10em;
+  height: calc(100% - 160px);
+  width: calc(100% - 320px);
+  background: #000000;
+  background: -webkit-linear-gradient(#000000, transparent);
+  background: -o-linear-gradient(#000000, transparent);
+  background: -moz-linear-gradient(#000000, transparent);
+  background: linear-gradient(#000000, transparent);
+}
+
+.app .player-container .show-info h1 {
+  font-size: 2.5em;
+  font-weight: 100;
+}
+
+.app .player-container .show-info h2 {
+  font-size: 2em;
+  margin-bottom: -10px;
+}
+
+.app .player-container .player {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.app .player-container .controls {
+  z-index: 100;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 2em 4em;
+  width: calc(100% - 128px);
+  height: 4em;
+  background: #000000;
+  background: -webkit-linear-gradient(transparent, #000000);
+  background: -o-linear-gradient(transparent, #000000);
+  background: -moz-linear-gradient(transparent, #000000);
+  background: linear-gradient(transparent, #000000);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app .player-container .controls .progress {
+  display: block;
+  background: rgba(41, 41, 41, 0.33);
+  width: 60%;
+  height: 5px;
+  border-radius: 10px;
+}
+
+.app .player-container .controls .progress .bar {
+  display: block;
+  height: 5px;
+  width: 0%;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-top: -5px;
+  z-index: 10;
+}
+
+.app .player-container .controls .progress .buffered {
+  display: block;
+  height: 5px;
+  background: #171717;
+  width: 0%;
+  z-index: 5;
+}
+
+.app .player-container .controls .volume {
+  display: block;
+  width: 70px;
+  height: 5px;
+  background: rgba(41, 41, 41, 0.33);
+  border-radius: 60px;
+}
+
+.app .player-container .controls .volume .bar {
+  display: block;
+  height: 5px;
+  width: 30%;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+@keyframes HeaderIntro {
+  from {
+    margin-left: -2em;
+    opacity: 0;
+  }
+}
+
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes FadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+    .app .header {
+      animation: FadeIn 1s ease-in-out;
+    }
+    .app .home .header .search-input {
+      width: 300px;
+      font-size: 1.3em;
+    }
+    .app .season-eps .show-info {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .app .season-eps .show-info h1 {
+      margin-bottom: 3px;
+    }
+}
