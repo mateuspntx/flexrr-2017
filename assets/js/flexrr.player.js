@@ -23,13 +23,8 @@ const Flexrr = {}
 
 Flexrr.Player = {
   videoEl: document.getElementById('player'),
-  controlsEl: $('.controls'),
-  videoDuration: []
+  controlsEl: $('.controls')
 }
-
-setTimeout(function () {
-   Flexrr.Player.videoDuration.unshift(player.duration)
-}, 50)
       
 Flexrr.Player.PlayControl = function(btn){
   const video = Flexrr.Player.videoEl
@@ -203,25 +198,28 @@ Flexrr.Player.SeekTo = function() {
   const video = Flexrr.Player.videoEl
   const progressBarWidth = progressBar.offsetWidth
 
-  progressBar.addEventListener('click', function(e) {
+  video.addEventListener('loadedmetadata', function() {
+    progressBar.addEventListener('click', function(e) {
 
-    const x = Math.floor(e.clientX - progressBar.offsetLeft)
+      const x = Math.floor(e.clientX - progressBar.offsetLeft)
 
-    let newCurrentTime = Math.floor(Flexrr.Player.videoDuration[0] * (x / progressBarWidth))
+      let newCurrentTime = Math.floor(video.duration * (x / progressBarWidth))
 
-    if(isNaN(newCurrentTime)) {
-      video.currentTime = 0.1
-    }
+      if(isNaN(newCurrentTime)) {
+        video.currentTime = 0.1
+      }
 
-    console.log('duration:', Flexrr.Player.videoDuration[0])
-    console.log('const x:', x)
-    console.log('progressBarWidth:', progressBarWidth)
-    console.log('newCurrentTime:', newCurrentTime)
-    
-    video.currentTime = newCurrentTime
+      //Logs to see is is receveing data
+      //console.log('duration:', video.duration)
+      //console.log('const x:', x)
+      //console.log('progressBarWidth:', progressBarWidth)
+      //console.log('newCurrentTime:', newCurrentTime)
+      
+      video.currentTime = newCurrentTime
 
-    console.info('seeked to ' + newCurrentTime)
+      console.info('seeked to ' + newCurrentTime)
 
+    })
   })
 }
 
