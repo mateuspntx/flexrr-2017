@@ -198,7 +198,7 @@ Flexrr.Player.SeekTo = function() {
   const video = Flexrr.Player.videoEl
   const progressBarWidth = progressBar.offsetWidth
 
-  video.addEventListener('loadedmetadata', function() {
+  window.addEventListener('load', function() {
     progressBar.addEventListener('click', function(e) {
 
       const x = Math.floor(e.clientX - progressBar.offsetLeft)
@@ -217,13 +217,11 @@ Flexrr.Player.SeekTo = function() {
       
       video.currentTime = newCurrentTime
 
-      console.info('seeked to ' + newCurrentTime)
-
     })
   })
 }
 
-Flexrr.Init = function() {
+Flexrr.Player.Init = function() {
   
   Flexrr.Player.SpaceKeyControl()
   Flexrr.Player.ProgressControl()
@@ -232,4 +230,4 @@ Flexrr.Init = function() {
   
 }
 
-Flexrr.Init()
+Flexrr.Player.Init()
