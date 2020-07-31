@@ -1,5 +1,3 @@
-'use strict';
-
 (function (mouseStopDelay) {
     var timeout;
     document.addEventListener('mousemove', function (e) {
@@ -16,7 +14,7 @@
             e.target.dispatchEvent(event);
         }, mouseStopDelay);
     });
-}(1000));
+}(1000))
 
 window.$ = (e) => document.querySelector(e)
 window.oncontextmenu = () => false
@@ -25,9 +23,14 @@ const Flexrr = {}
 
 Flexrr.Player = {
   videoEl: document.getElementById('player'),
-  controlsEl: $('.controls')
+  controlsEl: $('.controls'),
+  videoDuration: []
 }
 
+setTimeout(function () {
+   Flexrr.Player.videoDuration.unshift(player.duration)
+}, 50)
+      
 Flexrr.Player.PlayControl = function(btn){
   const video = Flexrr.Player.videoEl
   const controls = Flexrr.Player.controlsEl
@@ -194,26 +197,41 @@ Flexrr.Player.SpaceKeyControl = function(){
   })
 }
 
-Flexrr.Player.SeekTo = function(){
-  const progressBar = $('#progress'),
-  video = Flexrr.Player.videoEl,
-  duration = video.duration,
-  progressBarWidth = progressBar.offsetWidth
+Flexrr.Player.SeekTo = function() {
   
-  progressBar.addEventListener('click', function(e){
-    const x = Math.floor(e.clientX - progressBarWidth.offsetLeft)
-    console.log((duration / progressBarWidth) * x)
-    video.currentTime = duration * (x / progressBarWidth) 
+  const progressBar = $('#progress')
+  const video = Flexrr.Player.videoEl
+  const progressBarWidth = progressBar.offsetWidth
+
+  progressBar.addEventListener('click', function(e) {
+
+    const x = Math.floor(e.clientX - progressBar.offsetLeft)
+
+    let newCurrentTime = Math.floor(Flexrr.Player.videoDuration[0] * (x / progressBarWidth))
+
+    if(isNaN(newCurrentTime)) {
+      video.currentTime = 0.1
+    }
+
+    console.log('duration:', Flexrr.Player.videoDuration[0])
+    console.log('const x:', x)
+    console.log('progressBarWidth:', progressBarWidth)
+    console.log('newCurrentTime:', newCurrentTime)
+    
+    video.currentTime = newCurrentTime
+
+    console.info('seeked to ' + newCurrentTime)
+
   })
 }
 
 Flexrr.Init = function() {
-
-  Flexrr.Player.SeekTo()
+  
   Flexrr.Player.SpaceKeyControl()
   Flexrr.Player.ProgressControl()
   Flexrr.Player.HideControls()
-
+  Flexrr.Player.SeekTo()
+  
 }
 
 Flexrr.Init()
