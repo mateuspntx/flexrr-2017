@@ -23,7 +23,20 @@ const Flexrr = {}
 
 Flexrr.Player = {
   videoEl: document.getElementById('player'),
-  controlsEl: $('.controls')
+  controlsEl: $('.controls'),
+  videoTitle: 'Rocky Mountains',
+  videoDescription: 'A video by Tim Kellner'
+}
+
+Flexrr.Player.renderVideoInfo = function() {
+  const bottomInfoEl     = $('.show-info-control'),
+        videoTitle       = $('#video-title'),
+        videoDescription = $('#video-description')
+
+  bottomInfoEl.innerHTML     = Flexrr.Player.videoTitle
+  videoTitle.innerHTML       = Flexrr.Player.videoTitle
+  videoDescription.innerHTML = Flexrr.Player.videoDescription
+
 }
       
 Flexrr.Player.PlayControl = function(btn){
@@ -222,7 +235,8 @@ Flexrr.Player.SeekTo = function() {
 }
 
 Flexrr.Player.Init = function() {
-  
+
+  Flexrr.Player.renderVideoInfo()
   Flexrr.Player.SpaceKeyControl()
   Flexrr.Player.ProgressControl()
   Flexrr.Player.HideControls()

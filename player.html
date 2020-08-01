@@ -23,15 +23,15 @@
     <div class="player-container">
       <div class="show-info">
         <h1>You're watching</h1>
-        <h2>The 100</h2>
-        <h3>S1:E1: "Pilot"</h3>
+        <h2 id="video-title"></h2>
+        <h3 id="video-description"></h3>
       </div>
       <video class="player" id="player">
         <source id="video_source" src="rocky_mountains.mp4" type="video/mp4">
       </video>
       <div class="controls">
         <img src="assets/images/play-icon.svg" width="20em" class="play-pause-btn" onclick="Flexrr.Player.PlayControl(this)">
-        <p class="show-info-control">S1:E1: "Pilot"</p>
+        <p class="show-info-control"></p>
         <p class="divisor">|</p>
         <p class="current-time">00:00</p>
         <div class="progress" id="progress">
