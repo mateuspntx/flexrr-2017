@@ -242,12 +242,25 @@ Flexrr.Player.setVolume = function() {
       video.volume = 1;
     }
 
+    localStorage.setItem('playerVolumeData', newVolume)
     video.volume = newVolume;
     volumeBar.style.width = `${ whereClicked }%`;
   }
 }
 
 Flexrr.Player.Init = function() {
+
+  const playerVolumeData = localStorage.getItem('playerVolumeData')
+  const volumeBar  = $('.volume-bar');
+
+  if(!playerVolumeData){
+    localStorage.setItem('playerVolumeData', '0.5')
+  }
+
+  document.onreadystatechange = () => {
+    Flexrr.Player.videoEl.volume = localStorage.getItem('playerVolumeData')
+    volumeBar.style.width = `${ playerVolumeData * 100 }%`
+  }
 
   Flexrr.Player.renderVideoInfo()
   Flexrr.Player.SpaceKeyControl()
