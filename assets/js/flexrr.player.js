@@ -211,8 +211,8 @@ Flexrr.Player.SeekTo = function() {
   const video = Flexrr.Player.videoEl
   const progressBarWidth = progressBar.offsetWidth
 
-  window.addEventListener('load', function() {
-    progressBar.addEventListener('click', function(e) {
+  window.onload = () => {
+    progressBar.onclick = (e) => {
 
       const x = Math.floor(e.clientX - progressBar.offsetLeft)
 
@@ -230,8 +230,8 @@ Flexrr.Player.SeekTo = function() {
       
       video.currentTime = newCurrentTime
 
-    })
-  })
+    }
+  }
 }
 
 Flexrr.Player.Init = function() {
