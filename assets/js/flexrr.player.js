@@ -214,19 +214,13 @@ Flexrr.Player.SeekTo = function() {
   window.onload = () => {
     progressBar.onclick = (e) => {
 
-      const x = Math.floor(e.clientX - progressBar.offsetLeft)
+      const whereClicked = Math.floor(e.clientX - progressBar.offsetLeft)
 
-      let newCurrentTime = Math.floor(video.duration * (x / progressBarWidth))
+      let newCurrentTime = Math.floor(video.duration * (whereClicked / progressBarWidth))
 
       if(isNaN(newCurrentTime)) {
         video.currentTime = 0.1
       }
-
-      //Logs to see if is receiving data
-      //console.log('duration:', video.duration)
-      //console.log('const x:', x)
-      //console.log('progressBarWidth:', progressBarWidth)
-      //console.log('newCurrentTime:', newCurrentTime)
       
       video.currentTime = newCurrentTime
 
@@ -239,17 +233,17 @@ Flexrr.Player.setVolume = function() {
   const volumeEl      = $('.volume');
   const volumeBar  = $('.volume-bar');
   const video          = Flexrr.Player.videoEl;
-  const volumeBarWidth = volumeEl.offsetWidth;
 
   volumeEl.onclick = e => {
-    const x = Math.floor(e.clientX - volumeEl.offsetLeft);
-    const newVolume = x / 100;
+    const whereClicked = Math.floor(e.clientX - volumeEl.offsetLeft);
+    const newVolume = whereClicked / 100;
     
     if(!isNaN(newVolume)) {
       video.volume = 1;
     }
 
     video.volume = newVolume;
+    volumeBar.style.width = `${ whereClicked }%`;
   }
 }
 
