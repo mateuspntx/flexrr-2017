@@ -234,6 +234,16 @@ Flexrr.Player.SeekTo = function() {
   }
 }
 
+Flexrr.Player.setVolume = function() {
+  const volumeBar = $('.volume');
+  const video    = Flexrr.Player.videoEl;
+  const volumeBarWidth = volumeBar.offsetWidth;
+
+  volumeBar.onclick = e => {
+    console.log('clicked', e)
+  }
+}
+
 Flexrr.Player.Init = function() {
 
   Flexrr.Player.renderVideoInfo()
@@ -241,7 +251,8 @@ Flexrr.Player.Init = function() {
   Flexrr.Player.ProgressControl()
   Flexrr.Player.HideControls()
   Flexrr.Player.SeekTo()
-  
+  Flexrr.Player.setVolume()
+
 }
 
 Flexrr.Player.Init()
