@@ -371,13 +371,13 @@ body {
 
 .app .player-container .controls .volume {
   display: block;
-  width: 70px;
+  width: 100px;
   height: 5px;
   background: rgba(41, 41, 41, 0.33);
   border-radius: 60px;
 }
 
-.app .player-container .controls .volume .bar {
+.app .player-container .controls .volume .volume-bar {
   display: block;
   height: 5px;
   width: 30%;

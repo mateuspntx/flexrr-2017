@@ -222,7 +222,7 @@ Flexrr.Player.SeekTo = function() {
         video.currentTime = 0.1
       }
 
-      //Logs to see is is receveing data
+      //Logs to see if is receiving data
       //console.log('duration:', video.duration)
       //console.log('const x:', x)
       //console.log('progressBarWidth:', progressBarWidth)
@@ -235,12 +235,21 @@ Flexrr.Player.SeekTo = function() {
 }
 
 Flexrr.Player.setVolume = function() {
-  const volumeBar = $('.volume');
-  const video    = Flexrr.Player.videoEl;
-  const volumeBarWidth = volumeBar.offsetWidth;
 
-  volumeBar.onclick = e => {
-    console.log('clicked', e)
+  const volumeEl      = $('.volume');
+  const volumeBar  = $('.volume-bar');
+  const video          = Flexrr.Player.videoEl;
+  const volumeBarWidth = volumeEl.offsetWidth;
+
+  volumeEl.onclick = e => {
+    const x = Math.floor(e.clientX - volumeEl.offsetLeft);
+    const newVolume = x / 100;
+    
+    if(!isNaN(newVolume)) {
+      video.volume = 1;
+    }
+
+    video.volume = newVolume;
   }
 }
 
